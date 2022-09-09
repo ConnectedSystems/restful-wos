@@ -69,9 +69,10 @@ def parse_record(rec_data):
         kws_plus = static_data['item']['keywords_plus']['keyword']
     except KeyError:
         kws_plus = []
-
-    doi = _extract_doi(dynamic_data['cluster_related']['identifiers']['identifier'])
-
+    try:
+    	doi = _extract_doi(dynamic_data['cluster_related']['identifiers']['identifier'])
+    except KeyError:
+        doi = ""
     nc = dynamic_data['citation_related']['tc_list']['silo_tc']['local_count']
 
     tmp.update({
